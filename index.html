@@ -59,7 +59,6 @@
       font-size: 15px;
     }
 
-    /* 🚫 BLOQUEO TOTAL DE INTERACCIÓN */
     .blocker {
       position: fixed;
       top: 0;
@@ -70,7 +69,6 @@
       z-index: 9999;
     }
 
-    /* loader opcional */
     .loading {
       position: absolute;
       top: 20px;
@@ -104,11 +102,10 @@
   <button disabled>Entrar</button>
 </div>
 
-<!-- bloquea clicks -->
 <div class="blocker"></div>
 
 <script>
-    setTimeout(() => {
+  setTimeout(() => {
     window.location.href = "login.html";
   }, 2500);
 </script>
