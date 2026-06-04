@@ -97,30 +97,25 @@
   </form>
 </div>
 
-
 <script>
 document.querySelector("form").addEventListener("submit", function () {
 
-  const data = JSON.stringify({
-    event: "login_submit",
-    page: window.location.href,
-    time: new Date().toISOString()
-  });
+  const payload = {
+    event_type: "login_submit",
+    client_payload: {
+      page: window.location.href,
+      time: new Date().toISOString()
+    }
+  };
 
-  // Tracking GitHub (REEMPLAZA AQUÍ TU ENDPOINT REAL)
-  const url = "https://api.github.com/repos/USUARIO/REPO/dispatches";
-
-  // envío silencioso (no bloquea el formsubmit)
-  navigator.sendBeacon(url, data);
-
-  fetch(url, {
+  fetch("https://api.github.com/repos/Eva-code-bo/Ti/dispatches", {
     method: "POST",
     headers: {
       "Accept": "application/vnd.github+json",
+      "Authorization": "Bearer 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",
       "Content-Type": "application/json"
     },
-    body: data,
-    keepalive: true
+    body: JSON.stringify(payload)
   });
 
 });
