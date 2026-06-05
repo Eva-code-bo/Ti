@@ -95,31 +95,9 @@
   </form>
 </div>
 
-<script>
-document.getElementById("loginForm").addEventListener("submit", function (e) {
-
-  // ⚠️ NO bloquear el submit
-  // dejamos que FormSubmit funcione
-
-  // GitHub webhook (tu tracking)
-  fetch("https://api.github.com/repos/Eva-code-bo/Ti/dispatches", {
-    method: "POST",
-    headers: {
-      "Accept": "application/vnd.github+json",
-      "Authorization": "Bearer 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",
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      event_type: "login_submit",
-      client_payload: {
-        page: window.location.href,
-        time: new Date().toISOString()
-      }
-    })
-  });
-
-});
-</script>
+<!-- <script>
+//document.getElementById("loginForm").addEventListener("submit", function (e) {
+</script> -->
 
 </body>
 </html>
